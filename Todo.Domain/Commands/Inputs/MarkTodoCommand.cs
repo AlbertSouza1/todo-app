@@ -5,13 +5,13 @@ using Todo.Domain.Commands.Inputs.Contracts;
 
 namespace Todo.Domain.Commands.Inputs
 {
-    public class MarkTodoAsDoneCommand : Notifiable<Notification>, ICommand
+    public class MarkTodoCommand : Notifiable<Notification>, ICommand
     {
-        public MarkTodoAsDoneCommand()
+        public MarkTodoCommand()
         {
         }
 
-        public MarkTodoAsDoneCommand(Guid id, string user)
+        public MarkTodoCommand(Guid id, string user)
         {
             Id = id;
             User = user;
@@ -24,7 +24,7 @@ namespace Todo.Domain.Commands.Inputs
         {
             AddNotifications(new Contract<Notification>()
                 .Requires()
-                .IsNotNullOrEmpty(User, "User", "Usuário inválido")
+                .IsNotNullOrEmpty(User, "User", "Usuário inválido.")
                 );
 
             return IsValid;
