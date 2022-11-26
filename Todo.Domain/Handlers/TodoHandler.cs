@@ -26,7 +26,11 @@ namespace Todo.Domain.Handlers
             if (!command.Validate())
                 return new CommandResult(false, command.Messages);
 
-            return new CommandResult(true);
+            var todo = command.GetTodoItem();
+
+            _todoRepository.Create(todo);
+
+            return new CommandResult(success: true, "Tarefa salva com sucesso.", todo);
         }
 
         public ICommandResult Handle(UpdateTodoCommand command)
