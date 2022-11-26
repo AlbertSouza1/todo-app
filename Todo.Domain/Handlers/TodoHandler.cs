@@ -24,7 +24,7 @@ namespace Todo.Domain.Handlers
         public ICommandResult Handle(CreateTodoCommand command)
         {
             if (!command.Validate())
-                return new CommandResult(false, command.Notifications.First().Message);
+                return new CommandResult(false, command.Messages);
 
             return new CommandResult(true);
         }
