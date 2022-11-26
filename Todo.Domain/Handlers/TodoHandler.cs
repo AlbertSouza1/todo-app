@@ -1,6 +1,8 @@
 ﻿using Flunt.Notifications;
 using System;
+using System.Linq;
 using Todo.Domain.Commands.Inputs;
+using Todo.Domain.Commands.Results;
 using Todo.Domain.Commands.Results.Contracts;
 using Todo.Domain.Handlers.Contracts;
 using Todo.Domain.Repositories;
@@ -21,7 +23,10 @@ namespace Todo.Domain.Handlers
 
         public ICommandResult Handle(CreateTodoCommand command)
         {
-            throw new NotImplementedException();
+            if (!command.Validate())
+                return new CommandResult(false, command.Notifications.First().Message);
+
+            return new CommandResult(true);
         }
 
         public ICommandResult Handle(UpdateTodoCommand command)
