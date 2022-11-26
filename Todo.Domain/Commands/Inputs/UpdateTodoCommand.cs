@@ -2,10 +2,11 @@
 using Flunt.Validations;
 using System;
 using Todo.Domain.Commands.Inputs.Contracts;
+using Todo.Domain.Shareds.Validations.Utils;
 
 namespace Todo.Domain.Commands.Inputs
 {
-    public class UpdateTodoCommand : Notifiable<Notification>, ICommand
+    public class UpdateTodoCommand : Validation, ICommand
     {
         public UpdateTodoCommand()
         {
