@@ -2,6 +2,7 @@
 using Flunt.Validations;
 using System;
 using Todo.Domain.Commands.Inputs.Contracts;
+using Todo.Domain.Entities;
 using Todo.Domain.Shareds.Validations.Utils;
 
 namespace Todo.Domain.Commands.Inputs
@@ -22,6 +23,8 @@ namespace Todo.Domain.Commands.Inputs
         public string Title { get; set; }
         public string User { get; set; }
         public DateTime Date { get; set; }
+
+        public TodoItem GetTodoItem() => new TodoItem(Title, Date, User);
 
         public bool Validate()
         {
