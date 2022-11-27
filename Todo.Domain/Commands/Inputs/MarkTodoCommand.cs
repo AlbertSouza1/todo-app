@@ -12,14 +12,25 @@ namespace Todo.Domain.Commands.Inputs
         {
         }
 
-        public MarkTodoCommand(Guid id, string user)
+        public MarkTodoCommand(Guid id, string user, bool done)
         {
             Id = id;
             User = user;
+            Done = done;
         }
 
         public Guid Id { get; set; }
         public string User { get; set; }
+        public bool Done { get; set; }
+        public string ChangingStateMessage
+        {
+            get
+            {
+                if (Done) return "Tarefa marcada com sucesso.";
+
+                return "Tarefa desmarcada com sucesso.";
+            }
+        }
 
         public bool Validate()
         {

@@ -13,7 +13,8 @@ namespace Todo.Domain.Handlers
     public class TodoHandler : 
         Validation,
         IHandler<CreateTodoCommand>,
-        IHandler<UpdateTodoCommand>
+        IHandler<UpdateTodoCommand>,
+        IHandler<MarkTodoCommand>
     {
         private readonly ITodoRepository _todoRepository;
 
@@ -46,6 +47,20 @@ namespace Todo.Domain.Handlers
             _todoRepository.Update(todo);
 
             return new CommandResult(success: true, "Tarefa atualizada com sucesso.", todo);
+        }
+
+        public ICommandResult Handle(MarkTodoCommand command)
+        {
+            if (!command.Validate())
+                return new CommandResult(success: false, command.Messages);
+
+            var todo = _todoRepository.GetById(command.Id, command.User);
+
+            todo.ChangeMarkState(command.Done);
+
+            _todoRepository.Update(todo);
+
+            return new CommandResult(success: true, command.ChangingStateMessage, todo);
         }
     }
 }
