@@ -36,7 +36,16 @@ namespace Todo.Domain.Handlers
 
         public ICommandResult Handle(UpdateTodoCommand command)
         {
-            throw new NotImplementedException();
+            if (!command.Validate())
+                return new CommandResult(success: false, command.Messages);
+
+            var todo = _todoRepository.GetById(command.Id, command.User);
+
+            todo.UpdateTitle(command.Title);
+
+            _todoRepository.Update(todo);
+
+            return new CommandResult(success: true, "Tarefa atualizada com sucesso.", todo);
         }
     }
 }
