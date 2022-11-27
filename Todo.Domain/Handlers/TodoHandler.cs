@@ -1,7 +1,4 @@
-﻿using Flunt.Notifications;
-using System;
-using System.Linq;
-using Todo.Domain.Commands.Inputs;
+﻿using Todo.Domain.Commands.Inputs;
 using Todo.Domain.Commands.Results;
 using Todo.Domain.Commands.Results.Contracts;
 using Todo.Domain.Handlers.Contracts;
