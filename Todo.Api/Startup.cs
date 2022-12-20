@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using Todo.Domain.Handlers;
 using Todo.Domain.Repositories;
 using Todo.Infra.Contexts;
+using Todo.Infra.Repositories;
 
 namespace Todo.Api
 {
