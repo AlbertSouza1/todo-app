@@ -15,9 +15,9 @@ namespace Todo.Domain.Commands.Inputs
             Done = done;
         }
 
-        public Guid Id { get; private set; }
-        public string User { get; private set; }
-        public bool Done { get; private set; }
+        public Guid Id { get; set; }
+        public string User { get; set; }
+        public bool Done { get; set; }
         public string ChangingStateMessage
         {
             get
