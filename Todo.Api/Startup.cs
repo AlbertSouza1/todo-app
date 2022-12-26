@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using Todo.Domain.Handlers;
 using Todo.Domain.Repositories;
 using Todo.Infra.Contexts;
@@ -32,13 +33,13 @@ namespace Todo.Api
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.Authority = "";
+                    options.Authority = Environment.GetEnvironmentVariable("AUTHAUTHORITY");
                     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                     {
                         ValidateIssuer = true,
-                        ValidIssuer = "",
+                        ValidIssuer = Environment.GetEnvironmentVariable("AUTHAUTHORITY"),
                         ValidateAudience = true,
-                        ValidAudience = "",
+                        ValidAudience = Environment.GetEnvironmentVariable("VALIDAUDIENCE"),
                         ValidateLifetime = true
                     };
                 });
